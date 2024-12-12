@@ -71,4 +71,83 @@ const departments = {
     }
 }
 
-console.log(departments);
+console.log(`De afdeling Sales heeft ${departments.sales.numberOfEmployees} medewerkers`);
+
+console.log(`Marketing is een leuke afdeling om te werken. ${departments.marketing.description}.`);
+
+console.log(`De afdeling Customer Service heeft ${departments["customer-service"].numberOfEmployees} medewerkers`);
+
+console.log(`Sales is een uitdagende afdeling om te werken als Verkoopmanager. ${departments.sales.jobs[1].description}`);
+
+// Opdracht 2a: Vraag de gebruiker om hun naam
+//const userInput = prompt('Hoi! Hoe heet je?');
+//console.log(userInput);
+
+// Opdracht 2b: Vraag de gebruiker om een afdeling en log de beschrijving
+//const afdelingInput = prompt('Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]').toLowerCase();
+//console.log(afdelingInput);
+
+// Opdracht 2b: Beslissingsstructuur (if-else) om de beschrijving te vinden en loggen
+//if (afdelingInput === 'marketing') {
+//    console.log(`Je koos marketing. ${departments.marketing.description}`);
+//} else if (afdelingInput === 'sales') {
+//    console.log(`Je koos sales. ${departments.sales.description}`);
+//} else if (afdelingInput === 'customer-service') {
+//    console.log(`Je koos customer-service. ${departments["customer-service"].description}`);
+//} else {
+//    console.log("Ongeldige keuze! Kies uit: marketing, sales of customer-service.");
+//}
+
+// Opdracht 3a: Vraag de gebruiker om de functietitel in te voeren
+//const functieKeuze = prompt(
+//    `Je koos marketing. Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.\n` +
+//    `0: ${departments.marketing.jobs[0].title}\n` +
+//    `1: ${departments.marketing.jobs[1].title}\n` +
+//    `2: ${departments.marketing.jobs[2].title}\n` +
+//    `3: ${departments.marketing.jobs[3].title}`
+//);
+
+// Opdracht 3b: Log de functietitel op basis van de gekozen optie
+// const functieIndex = parseInt(functieKeuze); // Converteer de invoer naar een getal
+
+// Opdracht 3b: Zet de ingevoerde string om naar een getal en valideer
+//const functieIndex = parseInt(functieKeuze); // Converteer de invoer naar een getal
+
+//if (functieIndex >= 0 && functieIndex <= 3) {
+//    const gekozenFunctie = departments.marketing.jobs[functieIndex]; // Haal de functie op uit de jobs array
+//    console.log(`Je koos ${gekozenFunctie.title}. Een uitdagende rol! ${gekozenFunctie.description}`);
+//} else {
+//    console.log("Ongeldige keuze! Voer een getal tussen 0 en 3 in.");
+//}
+
+// Opdracht 4a: Zet de code van Opdracht 2 weer aan en vraag de gebruiker om een afdeling
+const afdelingKeuze = prompt("Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]").toLowerCase();
+
+// Opdracht 4b & 4c: Maak de prompt dynamisch en toon de functietitels
+if (afdelingKeuze === "marketing" || afdelingKeuze === "sales" || afdelingKeuze === "customer-service") {
+    const functieKeuze = prompt(
+        `Je koos ${afdelingKeuze}. Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.\n` +
+        `0: ${departments[afdelingKeuze].jobs[0].title}\n` +
+        `1: ${departments[afdelingKeuze].jobs[1].title}\n` +
+        `2: ${departments[afdelingKeuze].jobs[2].title}\n` +
+        `3: ${departments[afdelingKeuze].jobs[3].title}`
+    );
+
+    // Converteer de keuze naar een getal
+    const functieIndex = parseInt(functieKeuze);
+
+    // Check of de gekozen index geldig is en log de functie-informatie
+    if (functieIndex >= 0 && functieIndex <= 3) {
+        // Opdracht 5: Toon de functie-titel en beschrijving op de webpagina
+        const gekozenFunctie = departments[afdelingKeuze].jobs[functieIndex];
+        document.getElementById('role-title').textContent = gekozenFunctie.title;
+        document.getElementById('role-description').textContent = gekozenFunctie.description;
+    } else {
+        // Opdracht 5: Toon een foutmelding op de pagina
+        document.getElementById('error-message').textContent = "Ongeldige keuze! Voer een getal tussen 0 en 3 in.";
+    }
+} else {
+    // Opdracht 5: Toon een foutmelding voor een ongeldige afdeling
+    document.getElementById('error-message').textContent = "Ongeldige afdeling! Voer 'marketing', 'sales' of 'customer-service' in.";
+}
+
